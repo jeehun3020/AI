@@ -1,5 +1,8 @@
 ✨ Basic RAG AI Chatbot with Llama 3 + LangChain2
+
 📚 Multi-Document RAG Chatbot (PDF / TXT / CSV / JSON 지원)
+
+
 <div align="center">
 🚀 Hugging Face Space:
 👉 https://huggingface.co/spaces/jirtor/LangChain2
@@ -34,7 +37,7 @@ Groq Llama3 모델과 ConversationalRetrievalChain
 
 🎨 UI 살짝 보기
 
-(여기에 Space 실행 화면 스크린샷 추가하면 간지 폭발)
+
 📄 Process[PDF]
 📝 Process[TXT]
 📊 Process[CSV]
@@ -117,3 +120,4 @@ InstructorEmbedding==1.0.1
 sentence-transformers==2.5.1
 huggingface-hub==0.22.2
 python-dotenv==1.0.1
+
