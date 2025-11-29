@@ -10,10 +10,10 @@ on the **Olivetti Faces dataset** from `sklearn.datasets`.
 
 - Understand the mathematical and functional differences between **PCA** and **LDA**.  
 - Evaluate their performance in:
-  - 🧩 **Dimensionality reduction**
-  - 🎨 **Image reconstruction**
-  - 🎯 **Classification accuracy**
-  - ⚙️ **Computation efficiency**
+  - **Dimensionality reduction**
+  - **Image reconstruction**
+  - **Classification accuracy**
+  - **Computation efficiency**
 - Additionally, test **QDA** to analyze the effect of *covariance sharing* in discriminant models.
 
 ---
@@ -59,20 +59,19 @@ on the **Olivetti Faces dataset** from `sklearn.datasets`.
 ### PCA Reconstruction
 Shows how PCA reconstructs test faces using top principal components.
 
-| Original | Reconstructed |
-|:--:|:--:|
-| ![orig1](../assets/pca_recon1.png) | ![recon1](../assets/pca_recon2.png) |
+<img width="795" height="364" alt="image" src="https://github.com/user-attachments/assets/65f32fbb-2772-4d30-8c92-134544cd8668" />
+
 
 ### Reconstruction Error vs Components
-![Reconstruction Error](../assets/pca_mse_curve.png)
+<img width="562" height="393" alt="image" src="https://github.com/user-attachments/assets/a06f049b-5694-47f5-9acb-f7d686960a7d" />
 
-### PCA vs LDA Feature Space
-![Feature Space](../assets/pca_lda_features.png)
+### Accuracy Comparison
+<img width="622" height="393" alt="image" src="https://github.com/user-attachments/assets/c837e874-24ea-40c0-9c99-3af510e77e92" />
 
-### Accuracy & Time Comparison
-| Accuracy | Computation Time |
-|:--:|:--:|
-| ![Acc](../assets/accuracy_bar.png) | ![Time](../assets/time_bar.png) |
+
+### Time Comparison
+<img width="613" height="393" alt="image" src="https://github.com/user-attachments/assets/d39a8f1f-7b06-424e-915c-ef41d115dc55" />
+
 
 ---
 
