@@ -1,79 +1,117 @@
-🧠 AI & Deep Learning Learning Repository
+LoRA-Based Image Editing & Efficient Fine-Tuning Project
 
-A collection of machine learning and deep learning implementations, experiments, and practice projects.
-This repository serves as my ongoing study log as I explore various AI models, algorithms, and frameworks.
+Diffusers + LoRA + UNet Partial Fine-Tuning 실험
 
-I aim to build a strong foundation in both classical ML and modern deep learning by implementing models from scratch, training them on real datasets, and comparing their performance.
-📚 What’s Inside
+본 프로젝트는 Stable Diffusion 기반 이미지 편집(image editing)에서
+**Full Fine-tuning 대비 LoRA(Low-Rank Adaptation)**가
+얼마나 효율적이고 효과적인지 비교·분석하는 것을 목표로 한다.
 
-This repository is organized into branches, each dedicated to a specific concept or model:
+📌 1. Project Overview
 
-🔹 AdaBoost
+본 프로젝트에서는 다음 3가지 AI 편집 기능을 평가함:
+	1.	Instruction-based Image Editing
+	•	예: “Change it to white”, “Turn him into a cyborg”, “Change it to night”
+	2.	LoRA Rank-reduced Training (LFF, LPF)
+	3.	Partial LoRA Fine-tuning (LPF)
+	•	UNet 내 up / mid / down 블록 중 선택적 LoRA 적용
+	•	[‘up’, ‘mid’]
+	•	[‘mid’]
+	•	[‘down’, ‘mid
+	
+📌 2. Image Editing Examples
 
-Implementation of Adaptive Boosting for binary classification tasks.
-Includes intuition, weak learners, and visualization of boosting effects.
+2-1. Prompt-based Editing Examples
 
-🔹 DecisionTree
+✨ Example 1 — Change to white
 
-Decision tree model built from scratch with entropy, Gini index, and pruning logic.
-Includes visualization of decision boundaries and performance comparisons.
+ → 
 
-🔹 GAN
+✨ Example 2 — Change to gold
 
-Generative Adversarial Networks implemented using PyTorch/TensorFlow.
-Contains generator–discriminator training loops and experiments with image generation.
+ → 
 
-🔹 GenerativeAI
+✨ Example 3 — Change to night
 
-Exploration of large language models, prompt engineering, and generative AI applications.
-Includes projects using LLMs, LangChain, and text generation workflows.
+ → 
 
-🔹 Gradio
+⸻
+📌 3. Inference Hyperparameter Analysis
 
-Interactive AI demos built using Gradio interfaces.
-Useful for quickly deploying and testing ML models in a browser.
+3-1. num_inference_steps 영향
 
-🔹 Transformer
+(시간 증가 vs 품질 증가의 trade-off)
+<img width="976" height="312" alt="image" src="https://github.com/user-attachments/assets/73e14069-3757-49da-a8bb-e6279d27ec36" />
+→ 20 steps가 속도·품질 균형 최적
 
-Transformer-based NLP models including BERT-encoder pipelines,
-custom decoder architectures, and IMDB sentiment analysis experiments.
+3-2. guidance_scale 영향
+
+(프롬프트 반영 강도)
+<img width="976" height="414" alt="image" src="https://github.com/user-attachments/assets/4a410d00-37ec-4600-b31c-4f8715d6a8b0" />
+→ 1.0 ~ 1.5 권장
+
+📌 4. LoRA 실험 (Full FT vs LFF vs LPF)
+
+4-1. Parameter Comparison
+<img src="PARAM_GRAPH" width="700">
+<img width="954" height="338" alt="image" src="https://github.com/user-attachments/assets/81a372b7-e01b-4ec9-b190-d0c730234961" />
+
+→ LPF는 Full FT 대비 약 0.018%의 파라미터만 사용
+4-2. Editing Quality Comparison
+
+Dataset Example
+
+Prompt: "Transform the natural image into a cartoonish version."
+
+🔴 Full Fine-tuning (BFF)
+	•	Ground Truth와 가장 유사
+	•	가장 높은 품질
+	•	가장 무거움
+
+🔵 LoRA Method 1 (LFF)
+	•	색 번짐, Ghosting, Hard-edge overshoot 발생
+	•	품질 저하 큼
+
+🟢 LoRA Method 2 (LPF)
+	•	원본 구조 보전
+	•	자연스러운 cartoon style 반영
+	•	Full FT 대비 매우 가벼움
+	•	가장 효율적 모델
 
 ⸻
 
-🎯 Purpose of This Repository
-	•	To deepen understanding of machine learning algorithms
-	•	To practice implementing models rather than relying solely on libraries
-	•	To track growth as an AI/ML practitioner
-	•	To build a portfolio of reproducible and testable AI experiments
-	•	To explore state-of-the-art deep learning models (GANs, Transformers, LLMs)
+📌 5. LoRA Partial Finetuning (LPF) — Block 조합 비교
+<img width="1042" height="324" alt="image" src="https://github.com/user-attachments/assets/beb44712-40e8-46b6-bc0d-5eab8c6ca522" />
+→ [‘up’, ‘mid’] 조합이 품질/시간 균형에서 가장 우수
+
+📌 6. Experiment Conclusion
+
+✔ Full FT
+	•	최고의 품질
+	•	하지만 가장 느리고 가장 무거움
+	•	실사용에는 부적합
+
+✔ LoRA Method 1 (LFF)
+	•	파라미터 적지만
+	•	색 번짐, Artifact 발생
+	•	안정성 문제 있어 실사용 어려움
+
+✔ LoRA Method 2 (LPF)
+	•	가장 가벼움(0.16M)
+	•	품질은 Full FT보다 낮지만 LFF보다 훨씬 안정적
+	•	특히 'up' + 'mid' 조합이 최적
+	•	실시간·저비용 환경에 매우 적합
 
 ⸻
 
-🛠️ Tech Stack
-	•	Python
-	•	TensorFlow / Keras
-	•	PyTorch
-	•	Scikit-learn
-	•	Jupyter Notebook
-	•	Gradio
-	•	LangChain
-	•	Ollama & LLM frameworks
+📌 7. Final Recommendation
 
-⸻
+본 프로젝트의 최종 선정 모델은
+→ LoRA Method 2 (LPF) — Partial UNet LoRA with [‘up’, ‘mid’] 블록 적용
 
-📈 Future Goals
-	•	Add more branches for vision models (CNN, ResNet, Segmentation)
-	•	Implement reinforcement learning algorithms
-	•	Build LLM fine-tuning pipelines (LoRA, QLoRA)
-	•	Expand dataset variety and include benchmarks
-	•	Deploy selected models as web demos
-
-⸻
-
-🙌 Author
-
-Jihoon Jeong
-AI & Computer Vision Major
-Passionate about building practical AI systems and exploring the frontier of deep learning.
-
-GitHub: https://github.com/jeehun3020
+이 방식이
+	•	가장 적은 파라미터
+	•	가장 빠른 학습
+	•	가장 안정적인 출력
+	•	실사용 적용 가능성 높음
+	
+📌 8. Code Structure
