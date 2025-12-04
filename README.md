@@ -24,15 +24,18 @@ Diffusers + LoRA + UNet Partial Fine-Tuning 실험
 
 ✨ Example 1 — Change to white
 
- → 
+ <img width="516" height="1324" alt="image" src="https://github.com/user-attachments/assets/613a91ef-1da6-4b3b-8b58-c9bc7b4b5b42" />
+
 
 ✨ Example 2 — Change to gold
 
- → 
+ <img width="448" height="1306" alt="image" src="https://github.com/user-attachments/assets/ac6a2d8a-2e69-4b24-b8f4-961c73e7909f" />
+
 
 ✨ Example 3 — Change to night
 
- → 
+ <img width="558" height="1328" alt="image" src="https://github.com/user-attachments/assets/acb82b53-e0cc-48e7-9c57-bd33deda0a48" />
+
 
 ⸻
 📌 3. Inference Hyperparameter Analysis
@@ -115,3 +118,14 @@ Prompt: "Transform the natural image into a cartoonish version."
 	•	실사용 적용 가능성 높음
 	
 📌 8. Code Structure
+IP2P_LoRA_FT/
+│
+├── lora_utils.py          # LoRA layer, partial LoRA, full LoRA 적용 유틸 함수
+│
+├── prac_1.ipynb           # 실습 1: 기본 Image Editing (Prompt-based Editing)
+│
+├── prac_3.ipynb           # 실습 3: LoRA 구현 및 Full LoRA Fine-tuning
+│
+├── prac_4.ipynb           # 실습 4: Partial LoRA Fine-tuning (LPF) + 비교 실험
+│
+└── README.md              # 프로젝트 설명 문서 (작성 예정)
